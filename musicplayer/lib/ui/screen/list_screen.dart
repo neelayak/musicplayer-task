@@ -157,7 +157,10 @@ class _ListScreenState extends State<ListScreen> {
                                                       ['song_artistname']!,
                                                   cover_url: musicDM[index]
                                                       ['song_cover'],
-                                                  tag: 'musicplayer$index')));
+                                                  tag: 'musicplayer$index',
+                                                  isfav: listVM.isfav(
+                                                      musicDM[index]
+                                                          ['song_name']!))));
                                     },
                                     title: Text(musicDM![index]['song_name']!),
                                     subtitle: Text(

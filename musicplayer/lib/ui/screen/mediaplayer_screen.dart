@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:rxdart/rxdart.dart';
@@ -12,12 +13,15 @@ class Playermedia extends StatefulWidget {
   String cover_url;
   String author;
   String tag;
+  bool isfav;
+
   Playermedia(
       {Key? key,
       required this.title,
       required this.author,
       required this.cover_url,
-      required this.tag})
+      required this.tag,
+      required this.isfav})
       : super(key: key);
 
   @override
@@ -74,12 +78,36 @@ class PlayermediaState extends State<Playermedia> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    widget.author,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  (widget.isfav)
+                      ? Icon(FontAwesomeIcons.solidHeart)
+                      : Icon(FontAwesomeIcons.heart)
+                ],
+              ),
+            ),
             Container(
               height: MediaQuery.of(context).size.width * 0.3,
               margin: EdgeInsets.only(left: 20, right: 20, bottom: 50),
